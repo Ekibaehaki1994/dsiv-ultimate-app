@@ -47,8 +47,25 @@ else:
 # --- SIDEBAR ---
 with st.sidebar:
     st.title("💎 Silent Bagger Pro")
-    selected_code = st.selectbox("🎯 Pilih Emiten", ticker_options, index=0)
+    
+    # Tambahkan instruksi kecil untuk user
+    st.markdown("### 🎯 Input Emiten")
+    
+    # Fitur 1: Ketik Manual (Solusi Utama untuk HP)
+    # User bisa langsung mengetik ticker apa saja (misal: UNTR, BBRI, dsb)
+    custom_code = st.text_input("Ketik Kode Saham (Ticker):", placeholder="Contoh: UNTR").upper()
+    
+    # Fitur 2: Dropdown Pilihan (Tetap ada sebagai referensi cepat)
+    selected_from_list = st.selectbox("Atau Pilih dari Daftar:", ticker_options, index=0)
+    
+    # Logika Penentuan: Dahulukan input manual, jika kosong gunakan selectbox
+    if custom_code:
+        selected_code = custom_code
+    else:
+        selected_code = selected_from_list
+        
     st.write("---")
+    st.caption(f"📍 Menganalisis: **{selected_code}**")
     st.caption("v12.0 | Market Intelligence")
 
 # --- GLOBAL DATA SOURCE (SINKRONISASI EMITEN) ---
@@ -1010,4 +1027,5 @@ with tab_accumulation:
                 st.write(f"- **BVPS: `Rp {calc_bvps:,.2f}`**")
 
     except Exception as e:
+
         st.error(f"⚠️ Terjadi kesalahan pada DSIV: {e}")
