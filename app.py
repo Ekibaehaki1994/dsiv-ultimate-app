@@ -165,13 +165,13 @@ with tab_tech:
         with col4:
             st.metric("RSI Momentum", f"{rsi_now:.2f}")
         
-        # AI Insight Narrative
+        # Technical strategy summary
         status_rsi = "Oversold (Murah)" if rsi_now < 35 else "Overbought (Mahal)" if rsi_now > 70 else "Netral"
         action = "Akumulasi Bertahap" if rsi_now < 45 else "Hold / Tunggu Koreksi" if rsi_now > 65 else "Pantau Breakout"
         
         st.markdown(f"""
         <div style='margin-top: 15px; padding-top: 10px; border-top: 1px solid #30363d;'>
-            <span class='text-blue'>🧠 <b>AI Strategy:</b></span> Posisi saat ini <b>{status_rsi}</b>. 
+            <span class='text-blue'>📊 <b>Strategi Teknikal:</b></span> Posisi saat ini <b>{status_rsi}</b>. 
             Disarankan: <b class='text-green'>{action}</b> di area support Rp {sup:,.0f}.
         </div>
         """, unsafe_allow_html=True)
